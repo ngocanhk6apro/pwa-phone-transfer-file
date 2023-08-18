@@ -21,6 +21,10 @@ class UploadRepository {
         return this.#appDAO.runAsync(`INSERT INTO tblUpload(fileName, fileSize, fileType) VALUES(?, ?, ?)`, [fileName, fileSize, fileType]);
     }
 
+    deleteAsync(uploadId) {
+        return this.#appDAO.runAsync("DELETE FROM tblUpload WHERE id = ?", [uploadId]);
+    }
+
     getByIdAsync(id) {
         return this.#appDAO.getAsync("SELECT * FROM tblUpload WHERE id=?", [id]);
     }

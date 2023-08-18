@@ -30,9 +30,11 @@ uploadRoutes.post("/", async (req, resp) => {
     });
 });
 
-uploadRoutes.delete("/", (req, resp) => {
+uploadRoutes.delete("/id/:uploadId", async (req, resp) => {
+    const uploadId = req.params.uploadId;
+    const result = await uploadRepository.deleteAsync(uploadId);
     resp.json({
-        message: "Delete upload files"
+        result
     });
 });
 module.exports = uploadRoutes;
